@@ -1,0 +1,1 @@
+/home/emperor/gidy-turbin3/q4-turbin3-prebuilder-gidy/rust-of-rust-book/structs/methods/target/debug/methods: /home/emperor/gidy-turbin3/q4-turbin3-prebuilder-gidy/rust-of-rust-book/structs/methods/src/main.rs

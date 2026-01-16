@@ -1,0 +1,1 @@
+/home/emperor/gidy-turbin3/q4-turbin3-prebuilder-gidy/rust-of-rust-book/packages-crates-and-modules/restaurant/target/debug/librestaurant.rlib: /home/emperor/gidy-turbin3/q4-turbin3-prebuilder-gidy/rust-of-rust-book/packages-crates-and-modules/restaurant/src/lib.rs
