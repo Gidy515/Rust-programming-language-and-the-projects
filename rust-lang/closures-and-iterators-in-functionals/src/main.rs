@@ -1,5 +1,4 @@
 // to demonstrate some work with closures, we are doing a shirt giveaway project in which  
-use core::num;
 use std::{thread, time::Duration};
 
 #[derive(Debug, PartialEq, Copy, Clone)]
