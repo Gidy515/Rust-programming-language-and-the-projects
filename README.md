@@ -41,7 +41,11 @@ Working through [The Rust Programming Language](https://doc.rust-lang.org/book/)
 - **Path:** `projects/guessing_game/`
 - **Status:** ✅ Done
 - **Notes:** —
-
+ Used the `rand` crate for the first time — good intro to adding external dependencies via `Cargo.toml`
+  - `loop`, `break`, and `continue` feel natural for game logic
+  - `match` on a `Result` type is the idiomatic way to handle errors in Rust — no exceptions
+  - `String::new()` + `read_line()` pattern is the standard way to capture user input
+  - Shadowing a variable (re-using `guess` as both `String` and `u32`) was a surprising but clean Rust pattern
 ---
 
 ### Project 2 — `grep` CLI Tool: `minigrep` *(Chapter 12)*
@@ -49,7 +53,13 @@ Working through [The Rust Programming Language](https://doc.rust-lang.org/book/)
 
 - **Path:** `projects/minigrep/`
 - **Status:** ✅ Done
-- **Notes:** —
+- **Notes:**
+- `std::env::args()` is the standard way to collect CLI arguments
+  - Separating logic into a `Config` struct and a `run()` function keeps `main` clean — good separation of concerns
+  - Returning `Box<dyn Error>` from `run()` is a flexible way to bubble up different error types
+  - `eprintln!` writes to stderr instead of stdout — important for CLI tools so errors don't pollute piped output
+  - The environment variable trick (`IGNORE_CASE`) was a clean intro to `std::env::var()`
+  - Iterators and closures in the refactor (Chapter 13 tie-in) made `search()` much more concise
 
 ---
 
