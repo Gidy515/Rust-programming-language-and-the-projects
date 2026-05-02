@@ -8,11 +8,11 @@ enum ShirtColor {
 }
 
 struct Inventory {
-    shirts: Vec<ShirtColor>,
+    shirts: Vec<ShirtColor> 
 }
 
 impl Inventory {
-    fn giveaway(&self, user_preference: Option<ShirtColor>) -> ShirtColor {
+    fn giveaway(&self, user_preference: Option<ShirtColor>,) -> ShirtColor {
         user_preference.unwrap_or_else(|| self.most_stocked())
     }
 
@@ -22,10 +22,11 @@ impl Inventory {
 
         for color in &self.shirts {
             match color {
-                ShirtColor::Blue => num_blue += 1,
                 ShirtColor::Red => num_red += 1,
+                ShirtColor::Blue => num_blue += 1,
             }
         }
+
         if num_red > num_blue {
             ShirtColor::Red
         } else {
@@ -67,6 +68,8 @@ fn main() {
     thread::sleep(Duration::from_secs(2));
     num
 };
+
+println!("{}", expensive_closure(10));
 
 let example_closure = |x| x;
 let s = example_closure(String::from("hello"));

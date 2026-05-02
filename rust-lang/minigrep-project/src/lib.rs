@@ -1,7 +1,7 @@
 use std::error::Error;
 // Reading Argument values
-use std::fs;
-use std::env;
+use std::fs; // enables users to access a file and read it's content
+use std::env; // enable users pass in arguments (a string and a file name)
 
 // The config struct shows that the query and file_path are connected
 pub struct Config {
