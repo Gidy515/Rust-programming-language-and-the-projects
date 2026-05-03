@@ -1,0 +1,1 @@
+/home/emperor/rust-of-rust-book/rust-lang/mini-grep-revisit/target/debug/mini-grep-revisit: /home/emperor/rust-of-rust-book/rust-lang/mini-grep-revisit/src/main.rs
