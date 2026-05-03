@@ -31,6 +31,6 @@ fn main() {
                         break;
                     }
                 }
-        println!("You guessed {guess} and the secret number is {secret_number}");   
+        println!("You guessed {guess} try again lad..");   
  }
 }
