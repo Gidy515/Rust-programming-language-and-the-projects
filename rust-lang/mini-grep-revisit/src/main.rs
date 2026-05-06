@@ -7,7 +7,7 @@ fn main() {
     let args: Vec<String> = env::args().collect(); // The env::args() function returns an iterator over the command-line arguments passed to the program. The first argument (args[0]) is typically the name of the program itself, and subsequent arguments are the additional parameters provided by the user. 
     //dbg!(args); // The dbg! macro is a convenient way to print the value of an expression along with its source code location. It is often used for debugging purposes to quickly inspect the values of variables or expressions without needing to set up a more complex logging mechanism. When you use dbg!(args), it will print the contents of the args vector, which contains the command-line arguments passed to the program.
     //let (query, file_path) = parse_config(&args);
-    let config = parse_config(&args);
+    let config = Config::new(&args);
 
     println!("Searching for {}", config.query);
     println!("In the file {}", config.file_path);
@@ -29,9 +29,14 @@ struct Config {
     file_path: String,
 }
 
-fn parse_config(args: &[String]) -> Config {
-    let query = args[1].clone();
-    let file_path = args[2].clone();
+impl Config {
+    fn new(args: &[String]) -> Config {
+        if args.len() < 3 {
+            panic!("Not enough arguments");
+        }
+        let query = args[1].clone();
+        let file_path = args[2].clone();
 
-    Config {query, file_path}
+        Config {query, file_path}
+    }
 }
