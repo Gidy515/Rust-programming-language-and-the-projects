@@ -6,24 +6,32 @@ use std::fs; // The fs module provides functions for working with the file syste
 fn main() {
     let args: Vec<String> = env::args().collect(); // The env::args() function returns an iterator over the command-line arguments passed to the program. The first argument (args[0]) is typically the name of the program itself, and subsequent arguments are the additional parameters provided by the user. 
     //dbg!(args); // The dbg! macro is a convenient way to print the value of an expression along with its source code location. It is often used for debugging purposes to quickly inspect the values of variables or expressions without needing to set up a more complex logging mechanism. When you use dbg!(args), it will print the contents of the args vector, which contains the command-line arguments passed to the program.
+    //let (query, file_path) = parse_config(&args);
+    let config = parse_config(&args);
 
-    let bin = &args[0]; // The first argument (args[0]) is typically the name of the program itself, and subsequent arguments are the additional parameters provided by the user.
-    let query = &args[1]; 
-    let file_path = &args[2];
+    println!("Searching for {}", config.query);
+    println!("In the file {}", config.file_path);
 
-    println!("Searching for {}", query);
-    println!("In the file {}", file_path);
-    println!("The binary name is {}", bin);
+    let contents = fs::read_to_string(config.file_path).expect("Should have been able to read the file"); // The fs::read_to_string function reads the entire contents of a file into a String. It takes the file path as an argument and returns a Result<String, std::io::Error>. If the file is successfully read, it returns Ok(String) containing the file's contents. If there is an error (e.g., the file does not exist or cannot be read), it returns Err(std::io::Error) with details about the error. The expect method is used to handle the Result; if the Result is Err, it will panic and print the provided message.
+    
 
-    let contents = fs::read_to_string(file_path).expect("Should have been able to read the file"); // The fs::read_to_string function reads the entire contents of a file into a String. It takes the file path as an argument and returns a Result<String, std::io::Error>. If the file is successfully read, it returns Ok(String) containing the file's contents. If there is an error (e.g., the file does not exist or cannot be read), it returns Err(std::io::Error) with details about the error. The expect method is used to handle the Result; if the Result is Err, it will panic and print the provided message.
+    //let bin = &args[0]; // The first argument (args[0]) is typically the name of the program itself, and subsequent arguments are the additional parameters provided by the user.
+    //let query = &args[1]; 
+    //let file_path = &args[2];
+    
     println!("With the content:\n{}", contents);
 
-    let (query, file_path) = parse_config(&args);
+    
 }
 
-fn parse_config(args: &[String]) -> (&str, &str) {
-    let query = &args[1];
-    let file_path = &args[2];
+struct Config {
+    query: String,
+    file_path: String,
+}
 
-    (query, file_path)
-}  
+fn parse_config(args: &[String]) -> Config {
+    let query = args[1].clone();
+    let file_path = args[2].clone();
+
+    Config {query, file_path}
+}
