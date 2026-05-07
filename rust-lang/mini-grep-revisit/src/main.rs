@@ -21,7 +21,12 @@ fn main() {
     //let query = &args[1]; 
     //let file_path = &args[2];
 
-    run(config);
+    if let Err(e) = run(config) {
+        println!("Application error: {e}");
+        process::exit(1);
+    }
+
+    // run(config);
 }
 
 fn run(config: Config) -> Result<(), Box<dyn Error>> { 
