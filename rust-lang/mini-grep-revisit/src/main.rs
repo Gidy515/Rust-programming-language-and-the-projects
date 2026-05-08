@@ -8,7 +8,7 @@ fn main() {
     //dbg!(args); // The dbg! macro is a convenient way to print the value of an expression along with its source code location. It is often used for debugging purposes to quickly inspect the values of variables or expressions without needing to set up a more complex logging mechanism. When you use dbg!(args), it will print the contents of the args vector, which contains the command-line arguments passed to the program.
     //let (query, file_path) = parse_config(&args);
     let config = Config::build(&args).unwrap_or_else(|err|{
-        println!("Problem parsing arguments: {err}");
+        eprintln!("Problem parsing arguments: {err}");
         process::exit(1);
     });
 
@@ -20,7 +20,7 @@ fn main() {
     //let file_path = &args[2];
 
     if let Err(e) = mini_grep_revisit::run(config) {
-        println!("Application error: {e}");
+        eprintln!("Application error: {e}");
         process::exit(1);
     }
 
