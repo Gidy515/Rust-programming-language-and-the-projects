@@ -7,7 +7,10 @@ use std::error::Error;
 pub fn run(config: Config) -> Result<(), Box<dyn Error>> { 
     let contents = fs::read_to_string(config.file_path)?;
     //.expect("Should have been able to read the file"); // The fs::read_to_string function reads the entire contents of a file into a String. It takes the file path as an argument and returns a Result<String, std::io::Error>. If the file is successfully read, it returns Ok(String) containing the file's contents. If there is an error (e.g., the file does not exist or cannot be read), it returns Err(std::io::Error) with details about the error. The expect method is used to handle the Result; if the Result is Err, it will panic and print the provided message.
-    println!("With the content:\n{}", contents);
+    //println!("With the content:\n{}", contents);
+    for line in search(&config.query, &contents) {
+        println!("{line}");
+    }
     Ok(())
 }
 
@@ -26,4 +29,53 @@ impl Config {
 
         Ok(Config {query, file_path})
     }
+}
+
+/*#[cfg(test)]
+mod tests {
+    use super::*;
+
+    #[test]
+    fn one_result() {
+        let query = "duct";
+        let contents = ".\
+Rust: 
+safe, fast, productive.
+Pick three.";
+
+        assert_eq!(
+            vec!["safe, fast, productive."],
+            search(query, contents)
+        );
+    }
+}*/
+
+#[cfg(test)]
+mod tests {
+    use super::*;
+
+    #[test]
+    fn one_result() {
+        let query = "duct";
+        let contents = "\
+Rust:
+safe, fast, productive.
+Pick three.";
+
+        assert_eq!(
+            vec!["safe, fast, productive."],
+            search(query, contents)
+        );
+    }
+}
+
+pub fn search <'a> (query: &str, contents: &'a str) -> Vec<&'a str> {
+    let mut results = Vec::new();
+
+    for line in contents.lines() {
+        if line.contains(query) {
+            results.push(line);
+        }
+    }
+    results
 }
